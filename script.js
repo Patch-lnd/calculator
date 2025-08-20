@@ -7,7 +7,7 @@ function isOperator(char) {
 
 function handleInput(value, key) {
     if (key === "back") {
-        // Retire le dernier chiffre
+
         screen.textContent = screen.textContent.slice(0, -1);
     } else if (key === "8" || value === "C") {
         // Clear screen
