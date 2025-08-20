@@ -1,71 +1,128 @@
-*{
-    padding: 0;
+/* Fond général */
+body {
     margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #181818;
+    min-height: 100vh;
     box-sizing: border-box;
-}
-
-body{
-    max-width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: sans-serif;
-    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
 }
 
-.calculatrice{
-    background-color: #222222;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 5px black;
+/* Calculatrice centrée */
+.calculator {
+    position: relative;
+    z-index: 10;
+    background: #222;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(14, 13, 13, 0.5);
+    padding: 24px 18px 18px 18px;
+    width: 320px;
+    margin: 0; /* retire le décalage */
 }
 
-.ecran{
-    width: 100%;
-    height: 100px;
-    background-color: rgb(198,237,255);
-    margin-bottom: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 5px;
-    font-size:25px;
+/* ...existing code... */
+
+.screen {
+    background: #181818;
+    color: #fff;
+    font-size: 2.2rem;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 18px;
+    min-height: 48px;
+    text-align: right;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    overflow-x: auto;
 }
 
-.touches {
+/* Boutons de la calculatrice */
+.buttons {
     display: grid;
-    grid-template-columns:repeat(4,50px);
-    grid-template-rows: repeat(5,50px);
-    grid-gap: 7px;
- }
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
 
- button{
+.buttons button {
+    font-size: 1.4rem;
+    padding: 16px 0;
     border: none;
-    outline: none;
-    border-radius: 5px;
-    background-color: #f7f7f7; 
-    box-shadow: 0 3px #a8a8a8;
-    font-size: 18px;
- }
+    border-radius: 8px;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
 
- button:active {
-    box-shadow: 0 1px #a8a8a8;
-    transform: translateY(2px);
- }
+.buttons button:hover {
+    background: #444;
+}
 
- button[data-key="8"]{
-    background-color: #ff9900;
-    font-weight: bold;
-    color: white;
- }
- button[data-key="13"] {
-    grid-column: span 2;
-    background-color: #36e700;
-    font-weight: bold;
-    color: white;
-    font-size: "35px";
- }
+.buttons button[data-key="8"] {
+    background: #e57373;
+    color: #fff;
+}
+
+.buttons button[data-key="13"] {
+    background: #81c784;
+    color: #222;
+}
+
+/* Emojis mathématiques en fond, jamais sur la calculette ou le bouton */
+.math-symbols {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.math-symbols span {
+    position: absolute;
+    user-select: none;
+    opacity: 0.25;
+    filter: blur(0.5px);
+    font-family: 'Segoe UI Symbol', 'Arial', sans-serif;
+    color: #fff;
+    animation: float 12s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-60px) scale(1.2) rotate(10deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+}
+.graffiti-bg {
+    position: fixed;
+    top: 5%;
+    left: 30%;
+    transform: translate(-50%, -50%) rotate(-10deg) scale(1.2);
+    font-size: 5vw;
+    font-family: 'Permanent Marker', 'Comic Sans MS', cursive, sans-serif;
+    color: #69c711;
+    text-shadow:
+        2px 2px 0 #ff00cc,
+        4px 4px 0 #00ffe7,
+        6px 6px 0 #ffea00,
+        8px 8px 20px #000,
+        0 0 40px #0cd35f;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: 0.2em;
+    user-select: none;
+}
